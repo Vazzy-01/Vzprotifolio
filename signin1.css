@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(84, 144, 196);
+    font-size: 20px;
+    font-family:sans-serif;
+}
+.dark-mode{
+    background-color: black;
+    color: rgb(53, 51, 51);
+}
+div{
+    padding:40px;
+    margin:30vh auto;
+    width:40vw;
+    height: 60%;
+    background-color: rgb(199, 195, 189);
+    border-radius: 10px;
+   
+}
+
+h1{
+    text-align: center;
+   
+}
+label{
+    text-align: left;
+    margin-left:6%;
+    margin-bottom: 8px;
+}
+input:not(.question){
+    display:flex;
+    width:88%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:6px;
+    margin-bottom:9px;
+    border-radius: 4px;
+    font-size: 17px;
+}
+input:focus {
+  outline: none;
+  border: 2px solid dodgerblue; /* your custom focus color */
+}
+.questions{
+  display: block;
+}
+button{
+    width:40%;
+   height: 45px;
+   margin-top: 20px;
+   margin-left:57%;
+   font-size: 20px;
+   
+
+}

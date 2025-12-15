@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <META charset="utf-8">
+            <meta name="viewport" content="width=device-width initial-scale=1.0">
+            <title></title>
+            <link rel="stylesheet" href="signin1.css">
+
+    </HEAD>
+    <body>
+        <form><div>
+            <h1>Welcame To Our Page</h1>
+            <label for="tel">Name</label><input type="name" placeholder="Email/Phone Number" class="name">
+            <label for="contacts">Number/Email</label><input type="tel email" required placeholder="Name/email" class="email">
+            <label for="passward">Enter passward</label><input type="password" placeholder="enter your dailly password" id="password">
+            <p id="strength-info">Password must be at least 8 characters long and include uppercase letters, lowercase letters, numbers, and special characters.</p>
+            <label for="passward">Comfarm passward</label><input type="password" placeholder="comfirm your  password" id="comfirm">
+              <fieldset class="question" name="html-question-one">
+              <legend>
+               if you use number choose where to send your <i>otp</i> between:
+              </legend>
+          
+                  <label for="q1-a1" >
+                    <input type="radio" id="q1-a1" name="q1" class="question" />
+                    message
+                  </label>
+                  <label for="q1-a2" >
+                    <input type="radio" id="q1-a2" name="q1"  class="question"/>
+                    email
+                  </label>
+              
+            </fieldset>
+        <button class="pass">continue</button></div>
+        </form>
+        <script>
+         const email = document.querySelector('.email');
+const name = document.querySelector('.name');
+const button = document.querySelector('.pass');
+const passwordInput = document.querySelector('#password');
+const comfirmInput = document.querySelector('#comfirm');
+const strengthInfo = document.querySelector('#strength-info');
+
+function checkPasswordStrength() {
+  const password = passwordInput.value;
+  let strength = 0;
+
+  if (password.length >= 8) strength++;
+  if (/[A-Z]/.test(password)) strength++;
+  if (/[a-z]/.test(password)) strength++;
+  if (/[0-9]/.test(password)) strength++;
+  if (/[\W]/.test(password)) strength++;
+
+  if (strength === 0) {
+    passwordInput.style.borderColor = '';
+    strengthInfo.textContent =
+      'Password must be at least 8 characters long and include uppercase letters, lowercase letters, numbers, and special characters.';
+  } else if (strength <= 2) {
+    passwordInput.style.borderColor = 'red';
+    strengthInfo.textContent =
+      'Weak password. Try adding uppercase letters, numbers, and special characters.';
+  } else if (strength === 3 || strength === 4) {
+    passwordInput.style.borderColor = 'orange';
+    strengthInfo.textContent =
+      'Moderate password. Consider adding more variety for a stronger password.';
+  } else {
+    passwordInput.style.borderColor = 'green';
+    strengthInfo.textContent = 'Strong password!';
+  }
+}
+
+function checkPasswordMatch() {
+  if (comfirmInput.value === passwordInput.value) {
+    comfirmInput.style.borderColor = 'green';
+  } else {
+    comfirmInput.style.borderColor = 'red';
+  }
+}
+
+passwordInput.addEventListener('input', checkPasswordStrength);
+comfirmInput.addEventListener('input', checkPasswordMatch);
+
+button.addEventListener('click', (e) => {
+  e.preventDefault(); // stop form reload
+
+  const password = passwordInput.value;
+  const confirmPassword = comfirmInput.value;
+  const vemail = email.value.trim();
+  const vname = name.value.trim();
+
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vemail);
+
+  if (password.length >= 8 && password === confirmPassword && validEmail && vname.length > 0) {
+    window.location.href = "detail.html";
+  } else {
+    if (password.length < 8 || password !== confirmPassword) {
+      passwordInput.style.borderColor = 'red';
+      comfirmInput.style.borderColor = 'red';
+    }
+    if (!validEmail) {
+      email.style.borderColor = 'red';
+    }
+    if (vname.length < 1) {
+      name.style.borderColor = 'red';
+    }
+  }
+});
+
+// 🌙 Dark mode sync across pages
+const channel = new BroadcastChannel("my-channel");
+const mains = document.body;
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  mains.classList.add('dark-mode');
+}
+
+channel.onmessage = (event) => {
+  const theme = event.data.theme;
+  if (theme === "dark") {
+    mains.classList.add("dark-mode");
+  } else {
+    mains.classList.remove("dark-mode");
+  }
+  localStorage.setItem('theme', theme);
+};
+
+</script>
+    </body></HTML>

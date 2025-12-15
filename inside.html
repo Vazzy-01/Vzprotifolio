@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Management Dashboard</title>
+ <link rel="stylesheet" href="openning.css">
+</head>
+<body>
+   <header>
+    <!-- Right-aligned profile area -->
+    <div class="profile-block" id="profileBlock" aria-haspopup="true" aria-expanded="false">
+      <!-- NAME IN FRONT -->
+      <div class="profile-text">
+        <span class="profile-name" id="profileName">Imena Valentin</span>
+        <span class="profile-role" id="profileRole">Developer</span>
+      </div>
+
+      <!-- Avatar: change the src to use a real image; fallback uses initials -->
+      <button class="avatar" id="avatarButton" aria-label="Open profile menu" title="Open profile menu">
+        <!-- Option A: Uncomment the <img> line to use an actual image source -->
+        <!-- <img src="path/to/photo.jpg" alt="Imena Valentin"> -->
+
+        <!-- Option B: fallback initials using plain text -->
+        <span aria-hidden="true">IV</span>
+      </button>
+    </div>
+
+    <!-- Dropdown menu (JS toggles .show) -->
+    <div class="profile-dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+      <button type="button" role="menuitem" id="viewProfileBtn">View profile</button>
+      <button type="button" role="menuitem" id="settingsBtn">Settings</button>
+      <button type="button" role="menuitem" id="signOutBtn">Sign out</button>
+    </div>
+  </header>
+  <div class="division">
+  <div class="sidebar">
+    <h1>Contents</h1>
+    <ul>
+      <li><a href="#" class="active" data-target="dashboard">Dashboard</a></li>
+      <li><a href="#" data-target="manage_vendors">Manage Vendors</a></li>
+      <li><a href="#" data-target="manage_stalls">Manage Stalls</a></li>
+      <li><a href="#" data-target="sales_reports">Sales Reports</a></li>
+      <li><a href="#" data-target="inventory_management">Inventory Management</a></li>
+      <li><a href="#" data-target="customer_feedback">Customer Feedback</a></li>
+      <li><a href="#" data-target="settings">Settings</a></li>
+    </ul>
+  </div>
+
+  <main class="content-area">
+    <!-- Dashboard -->
+    <div id="dashboard">
+      <h2>Dashboard</h2>
+      <p>Welcome to the market management system. Use the sidebar to navigate through different sections.</p>
+      <div class="stats">
+        <div class="stat-item">
+          <h3>Total Vendors</h3>
+          <p>150</p>
+        </div>
+        <div class="stat-item">
+          <h3>Total Stalls</h3>
+          <p>300</p>
+        </div>
+        <div class="stat-item">
+          <h3>Daily Sales</h3>
+          <p>$5,000</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Vendors -->
+    <div id="manage_vendors" class="hidden">
+      <h2>Manage Vendors</h2>
+      <p>Here you can add, edit, or remove vendors from the system.</p>
+    </div>
+
+    <!-- Manage Stalls -->
+    <div id="manage_stalls" class="hidden">
+      <h2>Manage Stalls</h2>
+      <p>Here you can assign stalls to vendors and manage stall details.</p>
+    </div>
+
+    <!-- Sales Reports -->
+    <div id="sales_reports" class="hidden">
+      <h2>Sales Reports</h2>
+      <p>View and generate sales reports for different time periods.</p>
+    </div>
+
+    <!-- Inventory Management -->
+    <div id="inventory_management" class="hidden">
+      <h2>Inventory Management</h2>
+      <p>Track and manage inventory for all vendors in the market.</p>
+    </div>
+
+    <!-- Customer Feedback -->
+    <div id="customer_feedback" class="hidden">
+      <h2>Customer Feedback</h2>
+      <p>Review feedback from customers and respond to their concerns.</p>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="hidden">
+      <h2>Settings</h2>
+      <p>Configure system settings and preferences.</p>
+    </div>
+  </main>
+</div>
+  <script>
+     (function() {
+      const avatar = document.getElementById('avatarButton');
+      const dropdown = document.getElementById('profileDropdown');
+      const profileBlock = document.getElementById('profileBlock');
+
+      // Toggle dropdown open/closed
+      function toggleDropdown() {
+        const isOpen = dropdown.classList.toggle('show');
+        profileBlock.setAttribute('aria-expanded', String(isOpen));
+      }
+
+      avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      // close when clicking anywhere else
+      document.addEventListener('click', (e) => {
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+          profileBlock.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // keyboard accessibility: Esc to close, Enter/Space to open
+      avatar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDropdown();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+          profileBlock.setAttribute('aria-expanded', 'false');
+          avatar.focus();
+        }
+      });
+
+      // small handlers for dropdown buttons (demo)
+      document.getElementById('viewProfileBtn').addEventListener('click', () => alert('Open profile page (demo)'));
+      document.getElementById('settingsBtn').addEventListener('click', () => alert('Open settings (demo)'));
+
+document.getElementById('signOutBtn').addEventListener('click', () => {
+  window.location.href = "operning.html";
+}); })();
+     // select all sidebar links
+    const links = document.querySelectorAll('.sidebar ul li a');
+    const sections = document.querySelectorAll('main > div');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // remove "active" from all links
+        links.forEach(l => l.classList.remove('active'));
+        // add to clicked one
+        link.classList.add('active');
+
+        // hide all sections
+        sections.forEach(section => section.classList.add('hidden'));
+
+        // show the section that matches the clicked link
+        const target = link.getAttribute('data-target');
+        document.getElementById(target).classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
+

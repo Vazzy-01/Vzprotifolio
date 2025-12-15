@@ -1,0 +1,47 @@
+body{
+    background-color:white;
+    font-size: 20px;
+    font-family:sans-serif;
+}
+.dark-mode{
+    background-color: black;
+    color:rgb(247, 244, 244);
+}
+div{
+    padding:40px;
+    margin:30vh auto;
+    width:40vw;
+    height: 40%;
+    background-color: rgb(199, 195, 189);
+    border-radius: 10px;
+   
+}
+h1{
+    text-align: center;
+   
+}
+label{
+    text-align: left;
+    margin-left:6%;
+    margin-bottom: 8px;
+}
+input{
+    display:flex;
+    width:88%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:6px;
+    margin-bottom:9px;
+    border-radius: 4px;
+    font-size: 17px;
+}
+button{
+    width:40%;
+   height: 45px;
+   margin-top: 20px;
+   margin-left:57%;
+   font-size: 20px;
+   
+
+}

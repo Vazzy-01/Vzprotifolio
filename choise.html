@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lightbox Gallery</title>
+  <link rel="stylesheet" href="document.css">
+</head><body>
+   <header>
+        <h1>welcame to<span clas="busness-name"></span></h1>
+        <div class="profile-block" id="profileBlock">
+       <div class="profile-text">
+        <span class="profile-name" id="profileName">Imena Valentin</span>
+        <span class="profile-role" id="profileRole">CEO And CIP</span>
+      </div>
+        <button class="avatar" id="avatarButton" aria-label="Open profile menu" title="Open profile menu">
+            <span aria-hidden="true">IV</span></button>
+            <!-- Dropdown menu (JS toggles .show) -->
+    <div class="profile-dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+      <button type="button" role="menuitem" id="viewProfileBtn">View profile</button>
+      <button type="button" role="menuitem" id="settingsBtn">Settings</button>
+      <button type="button" role="menuitem" id="signOutBtn">Sign out</button>
+    </div>
+</div>
+ </header>
+ <div class="navigation">
+    <a href="data.html"><p>home > </p></a><a href="choise.html"><p>Apload report > </p></a>
+ </div>
+  <div class="format">
+    <label for="date">date</label>
+    <input type="date" id="date" name="date">
+    <label for="title">title</label>
+    <input type="text" id="title" name="title">
+    <button type="button" id="add-expences-btn">Add expences</button>
+    <div class="hidden" id="expences">
+      <div class="labour">
+      <label for="labour">labour</label>
+      <input type="number" id="labour" name="labour" value="0" min="0">
+      <label for="discribution">discribution</label>
+      <textarea id="discribution" name="discribution" rows="4" cols="50"></textarea>
+   </div>
+   <div class="manual">
+<label for="manual">manual</label>
+    <input type="number" id="manual" name="manual" value="0" min="0">
+    <label for="discribution">discribution</label>
+    <textarea id="discribution" name="discribution" rows="4" cols="50"></textarea>
+    </div>
+    <div class="medecines">
+    <label for="medecines">medecines</label>
+    <input type="number" id="medecines" name="medecines" value="0" min="0">
+    <label for="discribution">discribution</label>
+    <textarea id="discribution" name="discribution" rows="4" cols="50"></textarea>
+    </div>
+    <div class="others">
+    <label for="others">others</label>
+    <input type="number" id="others" name="others" value="0" min="0">
+    <label for="discribution">discribution</label>
+    <textarea id="discribution" name="discribution" rows="4" cols="50"></textarea>
+    <label for="total">total</label>
+    <input type="number" id="total" name="total" value="0" min="0">
+    </div>
+   </div>
+    <label for="explanation">comment</label>
+    <textarea id="explanation" name="explanation" rows="4" cols="50"></textarea>
+    <input type="file" accept="image/*" multiple>
+    <input type="file" accept="video/*" multiple>
+    <input type="file" accept="audio/*" multiple>
+    <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" multiple>
+    <label for="status">done by:</label><input type="text" id="status" name="status">
+    <label for="role" id="his-role"></label>
+    <button type="submit">Submit</button>
+<script>
+      (function() {
+      document.getElementById('add-expences-btn').addEventListener('click', function() {
+        var expencesDiv = document.getElementById('expences');
+        if (expencesDiv.classList.contains('hidden')) {
+          expencesDiv.classList.remove('hidden');
+        } else {
+          expencesDiv.classList.add('hidden');
+        }
+      });
+
+      const total = document.getElementById('total');
+      const labour = document.getElementById('labour');
+      const manual = document.getElementById('manual');
+      const medecines = document.getElementById('medecines');
+      const others = document.getElementById('others');
+      function calculateTotal() {
+        const labourValue = parseFloat(labour.value) || 0;
+        const manualValue = parseFloat(manual.value) || 0;
+        const medecinesValue = parseFloat(medecines.value) || 0;
+        const othersValue = parseFloat(others.value) || 0;
+        const sum = labourValue + manualValue + medecinesValue + othersValue;
+        total.value = sum;
+      }
+      labour.addEventListener('input', calculateTotal);
+      manual.addEventListener('input', calculateTotal);
+      medecines.addEventListener('input', calculateTotal);
+      others.addEventListener('input', calculateTotal);
+    })();  
+    </script>
+  </div>
+</body>
+</html>

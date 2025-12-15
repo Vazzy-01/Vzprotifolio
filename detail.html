@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="detail.css">
+   <link rel="stylesheet" href="gang.css">
+   <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="signin1.css">
+
+  <title>Country → Province Selector</title>
+</head>
+<body><header><h1>Welcome Breafing </h1>
+    <p>Dear<a></a> We pleased by welcaming me you in <a href="gang.html">iryacu</a> society.
+    Bellowis the form we would like you to fill for us to get you in poosition where you will be able to meet with your keen more fall</p>
+</header>
+  <main class="row">
+    <h1>Where are you from?</h1>
+
+    <form id="locationForm">
+      <label for="country">Country</label>
+      <select id="country" name="country" required>
+        <option value="">— Select country —</option>
+        <option value="Rwanda">Rwanda</option>
+        <option value="Uganda">Uganda</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Tanzania">Tanzania</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <div id="provinceWrapper" class="hidden">
+        <label for="province">Province (Rwanda)</label>
+        <select id="province" name="province">
+          <option value="">— Select province —</option>
+        </select>
+        <p class="note">You selected Rwanda. Please pick the province you came from.</p>
+      </div>
+
+      <div id="otherWrapper" class="hidden">
+        <label for="otherRegion">If not Rwanda, enter region/state (optional)</label>
+        <input id="otherRegion" name="otherRegion" type="text" placeholder="e.g. Western Cape, Lagos State...">
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <pre id="result" class="note"></pre>
+  </main>
+
+  <script>
+    // Provinces of Rwanda (current administrative: 5 provinces)
+    const rwandaProvinces = [
+      'Kigali City',
+      'Northern Province',
+      'Southern Province',
+      'Eastern Province',
+      'Western Province'
+    ];
+
+    const country = document.getElementById('country');
+    const provinceWrapper = document.getElementById('provinceWrapper');
+    const provinceSelect = document.getElementById('province');
+    const otherWrapper = document.getElementById('otherWrapper');
+    const otherRegion = document.getElementById('otherRegion');
+    const form = document.getElementById('locationForm');
+    const result = document.getElementById('result');
+
+    // Populate province select
+    function populateProvinces() {
+      // clear existing options except the placeholder
+      provinceSelect.length = 1;
+      rwandaProvinces.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        provinceSelect.appendChild(opt);
+      });
+    }
+
+    // Handle country change
+    country.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === 'Rwanda') {
+        populateProvinces();
+        provinceWrapper.classList.remove('hidden');
+        provinceSelect.required = true;
+        otherWrapper.classList.add('hidden');
+        otherRegion.required = false;
+      } else if (val === 'Other') {
+        provinceWrapper.classList.add('hidden');
+        provinceSelect.required = false;
+        otherWrapper.classList.remove('hidden');
+        otherRegion.required = false;
+      } else if (val === '') {
+        provinceWrapper.classList.add('hidden');
+        otherWrapper.classList.add('hidden');
+        provinceSelect.required = false;
+        otherRegion.required = false;
+      } else {
+        // other listed east african countries
+        provinceWrapper.classList.add('hidden');
+        provinceSelect.required = false;
+        otherWrapper.classList.remove('hidden');
+        otherRegion.required = false;
+      }
+    });
+
+    // Handle form submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const countryVal = data.get('country') || '';
+      const provinceVal = data.get('province') || '';
+      const otherVal = data.get('otherRegion') || '';
+
+      const out = {
+        country: countryVal,
+        province: provinceVal || null,
+        otherRegion: otherVal || null
+      };
+
+      result.textContent = 'Submitted: ' + JSON.stringify(out, null, 2);
+    });
+  </script>
+  <script src="color.js"></script>
+</body>
+</html>

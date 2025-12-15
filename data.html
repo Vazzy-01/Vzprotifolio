@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Ensure the page scales correctly on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Page description here">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <h1>welcame to<span clas="busness-name"></span></h1>
+        <div class="profile-block" id="profileBlock">
+       <div class="profile-text">
+        <span class="profile-name" id="profileName">Imena Valentin</span>
+        <span class="profile-role" id="profileRole">CEO And CIP</span>
+      </div>
+        <button class="avatar" id="avatarButton" aria-label="Open profile menu" title="Open profile menu">
+            <span aria-hidden="true">IV</span></button>
+            <!-- Dropdown menu (JS toggles .show) -->
+    <div class="profile-dropdown" id="profileDropdown" role="menu" aria-label="Profile menu">
+      <button type="button" role="menuitem" id="viewProfileBtn">View profile</button>
+      <button type="button" role="menuitem" id="settingsBtn">Settings</button>
+      <button type="button" role="menuitem" id="signOutBtn">Sign out</button>
+    </div>
+</div>
+
+    </header>
+    <main>
+<a href="choise.html"><div class="apload portal"><h2>Apload report</h2></div></a>
+<div class="permitions portal"><h2>Permitions</h2></div>
+<div class="data portal"><h2>Data manegment</h2></div>
+<div class="notifications portal"><h2>Notifications</h2></div>
+<div class="help portal" ><h2> Help</h2></div>
+    </main>
+    <script>
+       (function() {
+      const avatar = document.getElementById('avatarButton');
+      const dropdown = document.getElementById('profileDropdown');
+      const profileBlock = document.getElementById('profileBlock');
+
+      // Toggle dropdown open/closed
+      function toggleDropdown() {
+        const isOpen = dropdown.classList.toggle('show');
+        profileBlock.setAttribute('aria-expanded', String(isOpen));
+      }
+
+      avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      // close when clicking anywhere else
+      document.addEventListener('click', (e) => {
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+          profileBlock.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // keyboard accessibility: Esc to close, Enter/Space to open
+      avatar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDropdown();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+          profileBlock.setAttribute('aria-expanded', 'false');
+          avatar.focus();
+        }
+      });
+
+      // small handlers for dropdown buttons (demo)
+      document.getElementById('viewProfileBtn').addEventListener('click', () => alert('Open profile page (demo)'));
+      document.getElementById('settingsBtn').addEventListener('click', () => alert('Open settings (demo)'));
+
+document.getElementById('signOutBtn').addEventListener('click', () => {
+  window.location.href = "operning.html";
+}); })();
+    </script>
+</body>
+</html>

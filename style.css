@@ -1,0 +1,139 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+   font-family:Arial, Helvetica, sans-serif;
+   font-size: 20px;
+    background-color: #26233b;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    border-bottom: 2px solid #555;
+}
+.header-left{
+    width:30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header-right{
+    width:70%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: 70px;
+}
+.logging-section{
+    width:50%;
+    padding:20px;
+    border-right:1px solid #555;
+}
+h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #eae6e6;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.exp{
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #f5f3f3;
+    line-height: 1.6;
+    text-align: center;
+    margin:20px;
+}
+.login-button{
+    display: inline;
+    width: 40%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 120px;
+}
+  .hidden-login-form {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    width: 600px;
+    margin: 50px auto;
+    flex-direction: column;
+    gap: 10px; 
+    padding: 20px;
+    border : 1px solid #ccc;
+    border-radius: 10px;
+    padding-top: 50px;
+  }
+
+  label {
+    font-weight: bold;
+    text-align: left;
+    
+  }
+
+  input {
+    font-size: 20px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    height:40px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+  .logo{
+    width: 100px;
+    height: 100px;
+    }
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+  .close-button:hover {
+    color: #000;
+  }
